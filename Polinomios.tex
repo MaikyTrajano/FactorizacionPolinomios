@@ -1,0 +1,254 @@
+\documentclass[a4paper,10pt,landscape]{article}
+\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel} 
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{multicol,multirow}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{polynom}
+
+
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+}
+\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%x
+	{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+	{-1explus -.5ex minus -.2ex}%
+	{0.5ex plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+	{-1ex plus -.5ex minus -.2ex}%
+	{1ex plus .2ex}%
+	{\normalfont\small\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+% -----------------------------------------------------------------------
+
+\begin{document}
+	
+	\raggedright
+	\footnotesize
+	
+	\begin{center}
+		\Large{\textbf{Resumen Factorización de Polinomios}} \\
+	\end{center}
+	\begin{multicols}{3}
+		\setlength{\premulticols}{1pt}
+		\setlength{\postmulticols}{1pt}
+		\setlength{\multicolsep}{1pt}
+		\setlength{\columnsep}{2pt}
+		\section{Qué es factorizar}
+		Factorizar es reescribir un polinomio de tal forma que se puedan apreciar a simple vista cuáles son sus raíces. Es importante saber que decimos que un número es una raiz cuando dicho número hace que el polinomio valga 0.Para hacer esto tendremos que igualar el polinomio a 0 y usar el método correspondiente. Por ejemplo, las raíces de 
+		\begin{equation*}
+			P(x)=x^2-3x+2
+		\end{equation*}
+		Son (usando la fórmula de ecuaciones de segundo grado)
+		\begin{equation*}
+			x=2, \ x=1
+		\end{equation*}
+		Ya que 
+		\begin{gather*}
+			P(1)=1^2-3+2=0, \\ P(2)=2^2-3*2+2=4-6+2=0
+		\end{gather*}
+		Por lo tanto, 
+		\begin{gather*}
+			P(x)=x^2-3x+2=(x-2)(x-1)
+		\end{gather*}
+		Si se hacen las cuentas veréis que efectivamente multiplicando $(x-2)(x-1)$ se llega al polinomio original, es decir, es exactamente lo mismo, con la diferencia de que se ven claramente cuáles son sus raices.
+		\section{Caso fácil: Grado 2}
+		Tendremos un polinomio de la forma $$ax^2+bx+c$$ usaremos la fórmula de segundo grado: 
+		\begin{equation}
+			x=\frac{-b\pm \sqrt{b^2-4ac}}{2a}
+		\end{equation}
+		en caso de ser incompleta (es decir $b=0$ ó $c=0$) se podría resolver con esta misma fórmula o con el método conveniente (si no sabes como hacerlo, usa la fórmula anterior pero poniendo $b=0$ ó $c=0$).
+		
+		
+		\subsection{Cantidad de soluciones}
+		Al ser un polinomio de grado 2 tendremos que buscar dos soluciones, pero podría pasar que no exista solución, o que solo tengamos una solución. Para el caso de dos soluciones (el más común)
+		
+		\begin{gather*}
+			P(x)=x^2-3x+2 \\ x=1; \ x=2 \\ P(x)=(x-1)(x-2)
+		\end{gather*}
+		
+		Otra posibilidad es que tengamos solución única, esto significa que esa solución es doble, y por lo tanto, la factorización relacionada con esa raíz está al cuadrado
+		
+		\begin{gather*}
+			P(x)=x^2+4x+4 \\ x=2 \\ P(x)=x^2+4x+4=(x-2)^2
+		\end{gather*}
+		El último caso, es en el que no tenemos solución. Por ejemplo, 
+		
+		\begin{gather*}
+			P(x)=x^2+x+1
+		\end{gather*}
+		En este caso nos quedaría raíz negativa, por lo tanto no existe solución. Así, la factorización es \textbf{el propio polinomio}
+		
+		\section{Grado mayor que 2}
+		En este caso, generalmente, tendremos que usar Ruffini. No obstante, a veces vamos a poder sacar factor común y reducirlo a una ecuación de grado dos. 
+		\begin{gather*}
+			P(x)=x^3+3x^2+2x
+		\end{gather*}
+		Vemos que no hay término independiente, y por lo tanto podemos sacar factor común $$x$$.
+		\begin{gather*}
+			P(x)=x^3+3x+2=x(x^2+3x+2)=0
+		\end{gather*}
+		Y de aquí sacamos que 
+		\begin{gather*}
+			x=0 \\ x^2+3x+2=0 \\ \text{ Fórmula de segundo grado } x=-1, x=-2
+		\end{gather*}
+		Y tendremos como factorización 
+		\begin{gather*}
+			P(x)=(x-0)(x+1)(x+2)=x(x+1)(x+2)
+		\end{gather*}
+		\textbf{A veces sacar factor común nos dará un polinomio de grado 2, pero otras muchas veces nos dará un grado mayor, en cualquiera de los casos siempre que se pueda hay que hacerlo}
+		\subsection{Ruffini}
+		Es extremadamente importante no solo saber cómo se hace Ruffini, si no que también saber para qué sirve Ruffini. Esencialmente, sirve para calcular las raíces de polinomios de grado mayor que 2 y también para dividir entre polinomios de la forma $$(x-a)$$ (luego habrá un apartado de la división mediante Ruffini).
+		
+		\subsection{Obtener soluciones mediante Ruffini}
+		Tenemos un polinomio de grado mayor que 2, como 
+		\begin{equation}
+			P(x)=x^3+6x^2+11x+6 
+		\end{equation}
+		Para saber con qué números tenemos que probar para sacar las raíces, hay que mirar primero el término independiente, en este caso, es 6. Ahora, tenemos que hacer una lista de los divisores de 6, que son $${\pm 1, \pm 2, \pm 3, \pm 6}$$ 
+		Más adelante, usando el teorema del resto podremos ver antes de hacer Ruffini qué números son los correctos, si no, tendríamos que ir probando hasta que demos con los que son. En este caso, probamos con el -1.
+		
+		\begin{center}
+			\polyhornerscheme[x=-1]{x^3+6x^2+11x+6}
+		\end{center}
+		
+		Como tenemos de resto 0, significa que $$x=-1$$ es una raíz. Si seguimos probando, esta vez con -2,
+		\begin{center}
+			\polyhornerscheme[x=-2]{x^2+5x+6}
+		\end{center}
+		y por último con -3, 
+		\begin{center}
+			\polyhornerscheme[x=-3]{x+3}
+		\end{center}
+		Tenemos por tanto que las raíces y la factorización son: 
+		\begin{gather*}
+			x=-1, x=-2, x=-3 \\ P(x)=(x+1)(x+2)(x+3)
+		\end{gather*}
+		
+		Visto este ejemplo, vuelvo a lo que he dicho al empezar la sección preguntando \textbf{qué es exactamente hacer Ruffini}.\\  Cuando ponemos un número a la izquierda en la caja de Ruffini, ese número significa el valor exacto (al que llamaremos $a$) de la incógnita $x$ para el que vamos a probar si es raíz. Pero, además de eso, es lo mismo que decir que estamos diviendo $P(x)$ entre el polinomio $(x-a)$. Una explicación con lo que acabamos de hacer, sería:
+		\\
+		El polinomio era $$P(x)=x^3+6x^2+11x+6$$ y en el primer paso hemos probado a poner $x=-1$. Pues bien, esto es lo mismo que decir que hemos dividido $$(x^3+6x^2+11x+6):(x+1)$$ Y como el valor -1 es raíz, esta división es \textbf{EXACTA} o lo que es lo mismo, el resto de la división da 0 ?`Qué hemos sacado entonces haciendo Ruffini? Hemos llegado a que $x=-1$ es raíz, o lo que es lo mismo, el polinomio tiene como divisor a $(x+1)$ (otra manera de decirlo, sería que el polinomio es múltiplo de $(x+1)$). Además, recordamos que como -1 es raíz, si sustituyo ese valor en el polinomio P(x), me da 0, 
+		\begin{equation*}
+			P(-1)=(-1)^3+6*(-1)^2+11*(-1)+6=-1+6-11+6=0
+		\end{equation*}
+		Es \textbf{muy muy muy importante entender esto para poder entender el teorema del resto.}
+		\subsection{Dividir mediante Ruffini} 
+		Visto esto, será muy fácil hacer divisiones (siempre que se pueda) con Ruffini. Vamos a probar a dividir $P(x)=x^3-2x^2-x+2$ entre $(x+2)$
+		
+		\begin{center}
+			\polyhornerscheme[x=-2]{x^3-2x^2-x+2}
+		\end{center}
+		Como el resto da distinto de 0, hemos obtenido las siguientes conclusiones:
+		\begin{itemize}
+			\item $P(x)$ \textbf{NO} es múltiplo de (x+2) (podríamos decir también que (x+2) no es divisor de P(x)
+			\item $x=-2$ \textbf{NO} es raíz de P(x) 
+		\end{itemize}
+		Ahora, es obvio que el resto es -12 ?`Pero cuál es el cociente? Para poder saber qué grado es, vemos el grado del polinomio original era 3, y hemos dividido entre uno de grado 1, por lo tanto, el cociente es de grado 2 ($3-1=2$). Ahora, viendo la caja de Ruffini y sabiendo que -12 es el resto, sabemos que el 1 acompaña a $x^2$, -4 acompaña a $x$, y 7 es el término independiente, es decir, 
+		\begin{gather*}
+			\text{Cociente} = x^2-4x+7 \\ \text{Resto} = -12
+		\end{gather*}
+		Vamos con otro ejemplo,
+		
+		\begin{gather*}
+			P(x)=x^4 + x^3 - 7 x^2 - x + 6 \\ Q(x) = x-3 \\ P(x):Q(x) \\
+		\end{gather*}
+		\begin{center}
+			\polyhornerscheme[x=3]{x^4 + x^3 - 7 x^2 - x +6}
+		\end{center}
+		
+		Al igual que antes, podemos sacar conclusiones parecidas, 
+		\begin{itemize}
+			\item $P(x)$ \textbf{NO} es múltiplo de (x-3) (podríamos decir también que (x-3) no es divisor de P(x)
+			\item $x=3$ \textbf{NO} es raíz de P(x) 
+		\end{itemize}
+		Y para calcular el cociente, seguimos el procedimiento de antes. El grado inicial de P(x) era 4, y hemos dividido entre uno de grado 1, por lo tanto, el polinomio resultante es uno de grado 3 ($4-1=3$).
+		\begin{gather*}
+			\text{Cociente} = x^3+4x^2+5x+14 \\ \text{Resto} = 48
+		\end{gather*}
+		Una vez visto esto y teniendolo todo claro, vamos a pasar al teorema del resto, que nos ayudará a ver con qué numeros probar en la caja de Ruffini.
+		\section{Teorema del Resto}
+		Este teorema nos va a servir para antes de hacer Ruffini, poder calcular qué valor da el resto. Hay que ser conscientes de que \textbf{únicamente obtendremos el valor del resto}, y aquí el por qué es tan importante. Si el resto de una división da 0, significa que la división es exacta, y por lo tanto podremos saber que el número con el que hemos probado es una raíz.
+		\\
+		\textbf{Teorema del resto:} Sea P(x) un polinomio. Entonces, el resto de dividir P(x) entre un polinomio de la forma (x-a) es igual a evaluar el polinomio P(x) en el valor a, es decir, P(a). \\
+		Por ejemplo, si quiero calcular el resto de dividir $P(x)=x^3+6x^2+11x+6$ entre $(x-3)$, usando el teorema del resto sería tan sencillo como hacer
+		\begin{equation*}
+			P(3)=3^3+6*(3^2)+11*3+6=120
+		\end{equation*}
+		Y así, en una línea, sin necesidad de Ruffini, he obtenido la siguiente información:
+		\begin{itemize}
+			\item El resto de la división $(x^3+6x^2+11x+6):(x-3)$ es 120
+			\item Como el resto es distinto de 0, $x=3$ no es raíz
+			\item $(x-3)$ no es divisor de P(x) (también podríamos decir que P(x) NO es múltiplo de $(x-3)$
+		\end{itemize}
+		Ahora, si probase lo mismo con $x=-3$, sería lo mismo que dividir P(x) entre $(x+3)$, usando este teorema puedo calcular el resto sin necesidad de hacer Ruffini. Si os fijáis en la página anterior, es lo mismo que habríamos obtenido haciendo Ruffini en la ecuación marcada como (2), a falta de probar con las otras dos raíces, claro está.
+		\\
+		Con esto, tenéis que tener clara la relación que hay entre teorema del resto, raíces, factorizar, y hacer Ruffini. Vamos con un último ejemplo.
+		
+		\begin{gather*}
+			P(x)=x^3 + 2 x^2 - x - 2
+		\end{gather*}
+		Las posibles raíces son ${\pm1,\pm2}$ vamos a usar el teorema del resto para ver cuáles son, sin necesidad de tener que hacer Ruffini.
+		\begin{gather*}
+			P(-1)=(-1)^3+2*(-1)^2-(-1)-2=0 \\
+			P(1)=1+2-1-2=0 \\
+			P(2)=2^3+2*(2)^2-2-2=12 \\
+			P(-2)=(-2)^3+2*(-2)^2-(-2)-2=0 \\
+		\end{gather*}
+		Y así de rápido he obtenido las raíces y la factorización,
+		\begin{gather*}
+			x=-1, \ x=1, \ x=-2, \\
+			P(x)=(x+1)(x-1)(x+2)
+		\end{gather*}
+		\textbf{Es muy importante leer bien el enunciado del ejercicio, si nos piden usar Ruffini, podremos usar este teorema para saber cuáles son las raíces y por lo tanto los números que tengo que usar en Ruffini.}
+		\\
+		\textbf{Ejercicio de examen: Usando el método de Ruffini, calcula las raíces del polinomio $P(x)=x^3 - 2 x^2 - x + 2$}
+		Como nos piden usar el método de Ruffini, solo vamos a poder usar el teorema del resto para guiarnos con los números a meter en la caja. Siguiendo el ejemplo anterior, pruebo con los divisores del término independiente,
+		\begin{gather*}
+			P(1)=1-2-1+2=0 \\
+			P(-1)=(-1)^3-2*(-1)^2-(-1)+2=0 \\
+			P(2)=2^3-2*(2)^2-2+2=0 \\
+			P(-2)=(-2)^3-2*(-2)^2-(-2)+2=-12 \\
+		\end{gather*}
+		Ahora que sé esto, haciendo Ruffini
+		\begin{center}
+			\polyhornerscheme[x=1]{x^3 - 2 x^2 - x + 2}
+		\end{center}
+		\begin{center}
+			\polyhornerscheme[x=-1]{x^2-x-2}
+		\end{center}
+		\begin{center}
+			\polyhornerscheme[x=2]{x-2}
+		\end{center}
+		Y por lo tanto las raíces y la factorización son,
+		\begin{gather*}
+			x=1, x=-1, x=2 \\
+			P(x)=(x-1)(x+1)(x-2)
+		\end{gather*}
+		
+		\section{Ejercicios distintos que puedan poner}
+		\begin{itemize}
+			\item a) Escribe un polinomio P(x) que tenga determinadas raíces
+			\item b) Calcula el valor de m para que esta división sea exacta
+			\item c) Sin hacer la división, calcula el resto
+			\item d) Sabiendo estas raices, calcula la que falta
+		\end{itemize}
+		
+		
+	\end{multicols}
+\end{document}
